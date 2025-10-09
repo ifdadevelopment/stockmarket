@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { image } from "../../data";
 import { HiMenu, HiX } from "react-icons/hi";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-
   const toggleMenu = () => setMenuOpen(!menuOpen);
+  useEffect(() => {
+    const header = document.getElementById("main-header");
+    if (header) {
+      const height = header.offsetHeight;
+      document.documentElement.style.setProperty("--header-height", `${height}px`);
+    }
+  }, []);
 
   const navItems = [
     { title: "Training", link: "/training" },
@@ -18,13 +24,16 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-white shadow-md fixed w-full z-50 top-0 left-0">
+    <header
+      id="main-header"
+      className="bg-white shadow-md fixed w-full z-50 top-0 left-0 transition-all"
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center space-x-2">
             <img src={image.Logo} alt="Logo" className="h-10 w-auto" />
           </Link>
-          <nav className="hidden md:flex space-x-8 font-semibold text-gray-800">
+          <nav className="hidden md:flex space-x-8 font-bold font-grotesque text-gray-600">
             {navItems.map((item) => (
               <Link
                 key={item.title}
@@ -49,11 +58,11 @@ const Header = () => {
           menuOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0 overflow-hidden"
         }`}
       >
-        <ul className="flex flex-col py-2 text-gray-800 font-medium">
+        <ul className="flex flex-col py-2 text-gray-800 font-bold">
           {navItems.map((item, index) => (
             <li
               key={index}
-              className="flex justify-between items-center py-3 px-6 hover:bg-gray-50 border-b"
+              className="flex  justify-between items-center py-3 px-6 hover:bg-gray-50 border-b"
             >
               <Link to={item.link} className="w-full">
                 {item.title}

@@ -7,7 +7,7 @@ const Training = () => {
   return (
     <section
       id="learn"
-      className="relative overflow-hidden"
+      className="relative overflow-hidden mt-[calc(var(--header-height)+40px)]"
       style={{ backgroundColor: image?.Bg || "#f5f6f7" }}
     >
       <div className="pointer-events-none absolute inset-0 -z-10">
