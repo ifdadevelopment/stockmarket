@@ -9,6 +9,8 @@ import Footer from "./components/Footer";
 
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import TrainingPage from "./pages/TrainingPage";
+import TradingTips from "./pages/TradingTips";
+import InteradayTips from "./pages/InteradayTips";
   const isMinimalLayout = location.pathname === "/home";
 const App = () => {
   return (
@@ -17,6 +19,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/training" element={<TrainingPage />} />
+        <Route path="/trading-tips" element={<TradingTips />} />
+        <Route path="/trading-tips/intraday" element={<InteradayTips />} />
       </Routes>
 
       {!isMinimalLayout && <Footer />}
