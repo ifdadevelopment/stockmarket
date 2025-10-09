@@ -1,6 +1,5 @@
-// TrustBadgesSection.jsx
 import React from "react";
-import { LuHand, LuMedal } from "react-icons/lu"; // npm i react-icons
+import { LuHand, LuMedal } from "react-icons/lu"; 
 
 function InfoCard({ icon, title, children }) {
   return (
@@ -8,12 +7,12 @@ function InfoCard({ icon, title, children }) {
       className="relative rounded-xl bg-white ring-1 ring-black/5 shadow-[0_18px_48px_rgba(0,0,0,0.06)] p-6 sm:p-7"
     >
       <div className="flex items-start gap-3">
-        <div className="text-[26px] text-orange-400 shrink-0">{icon}</div>
+        <div className="text-[36px]  text-orange-400 shrink-0">{icon}</div>
         <div>
-          <h4 className="text-[15px] sm:text-base font-extrabold text-gray-900">
+          <h4 className="text-[25px] leading-[1.9] sm:text-2xl font-extrabold text-gray-900">
             {title}
           </h4>
-          <p className="mt-2 text-[13px] sm:text-[14px] leading-6 text-gray-600">
+          <p className="mt-2 text-[20px] font-bold sm:text-[18px] leading-6 text-gray-600">
             {children}
           </p>
         </div>
@@ -28,7 +27,6 @@ export default function TrustBadgesSection() {
       className="relative overflow-hidden "
       id="trust"
     >
-      {/* soft center glow behind the two cards, like the screenshot */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 -z-10 top-1/2 -translate-y-1/2 h-[260px]

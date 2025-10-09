@@ -7,6 +7,8 @@ import ScheduleSection from '../components/ScheduleSection'
 import EnquirySection from '../components/EnquirySection'
 import TrustBadgesSection from '../components/TrustBadgesSection'
 import AcademyHeroSection from '../components/AcademyHeroSection'
+import FaqSection from '../components/FaqSection'
+import CtaBanner from '../components/CtaBanner'
 
 const TrainingPage = () => {
   return (
@@ -19,6 +21,8 @@ const TrainingPage = () => {
     <AcademyHeroSection/>
     <EnquirySection/>
     <TrustBadgesSection/>
+    <FaqSection/>
+    <CtaBanner/>
     </>
   )
 }

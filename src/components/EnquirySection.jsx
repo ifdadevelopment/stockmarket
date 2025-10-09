@@ -46,7 +46,7 @@ export default function EnquirySection() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14">
         <div className="text-center ">
-          <h2 className="text-3xl sm:text-3xl md:text-[44px]  font-black text-gray-900">
+          <h2 className="text-3xl sm:text-3xl md:text-[44px] leading-[2] font-black text-gray-900">
             Enquiry Now
           </h2>
           <p className="mt-3 text-3xl font-bold  sm:text-xl text-gray-600">

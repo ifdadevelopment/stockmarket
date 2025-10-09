@@ -30,7 +30,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-white border-t">
+    <footer className="bg-white max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 border-t mt-[calc(var(--header-height)+40px)]">
       <div className="mx-auto max-w-7xl px-6 py-12">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
