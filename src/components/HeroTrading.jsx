@@ -5,10 +5,10 @@ export default function HeroTrading({
   onCTAClick,
   title = "Not Just to Learn. Start Earning in",
   titleEmphasis = "Share Market",
-  kicker = "Learn with Ease",
-  blurb = `EQSIS is the preferred and trusted stock market training institute in Chennai.
-Our 6-week trading course is particularly beneficial for working professionals
-and homemakers to start trading independently.`,
+  kicker = "Learn with Clarity",
+  blurb = `We offer a six-week stock market training program designed especially for
+working professionals, homemakers, and anyone who wants to trade confidently
+on their own.`,
   ctaLabel = "GET MORE DETAILS",
 }) {
   return (

@@ -12,13 +12,11 @@ const FeaturesSection = () => {
             <span className="relative z-10">Stop Doubting Yourself,</span>
             <span className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 h-[2px] bg-slate-500"></span>
           </span>{" "}
-          Trade with Confidence
+          Build Confidence, Trade Smarter
         </h2>
 
         <p className="mt-4 text-[26px] sm:text-[24px] font-semibold text-slate-600 leading-7">
-          With our stock market course, you will gain the confidence and knowledge to
-          succeed. We will teach you stock market basics, technical analysis, intraday
-          trading strategies, and futures and options.
+          In this course, you’ll gain the knowledge and tools to: Understand stock market basics,Use technical analysis,Develop intraday trading strategies,Dive into futures &amp; options
         </p>
       </div>
       <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -32,9 +30,9 @@ const FeaturesSection = () => {
               <FiPenTool className="h-10 w-10 mx-auto" />
             </div>
             <h3 className="text-2xl font-extrabold text-slate-900">Beginner-Friendly</h3>
-            <p className="mt-3 text-slate-600 text-xl leading-7">
-              Our trading course is <span className="font-semibold">designed for beginners</span>.
-              We use simple and relatable examples.
+            <p className="mt-3 text-slate-600 text-xl font-semibold leading-7">
+              We teach in <span className="font-bold">simple language</span>
+              ,using real examples so concepts stick naturally.
             </p>
           </div>
         </article>
@@ -48,9 +46,10 @@ const FeaturesSection = () => {
               <FiBarChart2 className="h-10 w-10 mx-auto" />
             </div>
             <h3 className="text-2xl font-extrabold text-slate-900">Learn by Doing</h3>
-            <p className="mt-3 text-slate-600 text-xl leading-7">
-              Experience hands-on training with{" "}
-              <span className="font-semibold">practical classes</span> for successful stock
+            <p className="mt-3 text-slate-600 text-xl font-semibold leading-7">
+              `Hands-on training throughout the course ensures that you&#39;re not{""}
+              <span className="font-bold">{""} just hearing
+                theory</span> — you practice it.
               trading.
             </p>
           </div>
@@ -64,10 +63,11 @@ const FeaturesSection = () => {
             <div className="mx-auto mb-5 h-15 w-15 text-[#2b4a7d]">
               <FiGlobe className="h-10 w-10 mx-auto" />
             </div>
-            <h3 className="text-2xl font-extrabold text-slate-900">Post-Training Support</h3>
-            <p className="mt-3 text-slate-600 text-xl leading-7">
-              Get ongoing support and <span className="font-semibold">interact with your trainer</span>{" "}
-              until you’re confident in trading.
+            <h3 className="text-2xl font-extrabold text-slate-900">Ongoing Support</h3>
+            <p className="mt-3 text-slate-600 text-xl font-semibold leading-7">
+              Even after the training ends, you&#39;ll continue to receive guidance from your trainer
+              until you&#39;re  <span className="font-bold">confident to trade</span>{" "}
+              independently.
             </p>
           </div>
         </article>

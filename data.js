@@ -1,11 +1,40 @@
 // src/data/index.js
 const Logo = "/assets/logo.png";
+const ss2 = "/assets/ss2.png";
 const Bg = "/assets/download.svg";
 const stockPng = "/assets/stockpng.jpg";
 const tips = "/assets/intraday-trading-tips.png";
 const stocktips = "/assets/stocktips.png";
+const heroBg = "/assets/heroBg.webp";
+const appleIcon = "/assets/appleIcon.png";
+const desktopwhite = "/assets/desktopWhite.png";
+const googlePlayWhite = "/assets/googlePlayWhite.webp";
+const stoxoInputImg = "/assets/stoxoInput.webp";
+const mobileBg = "/assets/bgMob.webp"
+const coloredLine = "/assets/coloredLine.webp"
+const ff1Card1 ="/assets/ff1Card1.webp"
+const ff1Card2 ="/assets/ff1Card2.webp"
+const ff1Card3 ="/assets/ff1Card3.webp"
+const ff2Card ="/assets/ffCard.webp"
+const ff3Card1 ="/assets/ff3Card1.webp"
+const ff3Card2 ="/assets/ff3Card2.webp"
+const flywheel1 ="/assets/flywheel1.webp"
+const flywheel2 ="/assets/flywheel2.webp"
+const flywheel3 ="/assets/flywheel3.webp"
+const logoteam = "/assets/logoteam.png"
+const bannerImg = "/assets/stoxoHomeBanner.webp"
+const linesBg = "/assets/stoxoInput.webp"
+const ps = "/assets/guide1.webp"
+const vj = "/assets/guide2.webp"
+const dp = "/assets/guide4.webp"
+const ag = "/assets/guide5.webp"
+const fc = "/assets/guide6.webp"
+const vk = "/assets/guide13.webp"
+const dd = "/assets/guide14.webp"
+const pm = "/assets/guide1.webp"
+const rotateBg = "/assets/rotateBg.webp"
 
-export const image = { Logo, Bg, stockPng, tips, stocktips };
+export const image = {logoteam,bannerImg,linesBg,ps,vj,dp,ag,fc,vk,dd,pm, ss2,Logo, Bg, stockPng, tips, stocktips,heroBg,appleIcon,desktopwhite,googlePlayWhite,stoxoInputImg,mobileBg,coloredLine,ff1Card1,ff1Card2,ff1Card3,flywheel1,flywheel2,flywheel3,ff2Card,ff3Card1,ff3Card2 };
 
 export const blogs = [
   {

@@ -3,7 +3,7 @@ import { HiOutlineBellAlert } from "react-icons/hi2";
 
 export default function AlertBanner({
   title = "Alert: Beware of Unauthorized Use of Our Name",
-  phone = "9500077790",
+  phone = "+919161276060.",
 }) {
   return (
     <section className="w-full bg-black text-center text-white sm:mt-[calc(var(--header-height))] mt-[calc(var(--header-height,80px)+40px)]">

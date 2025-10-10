@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { image } from "../../data";
 import { HiMenu, HiX, HiChevronDown, HiChevronUp } from "react-icons/hi";
-
 const NAV = [
   { title: "Training", link: "/training" },
   {
@@ -99,10 +98,8 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center space-x-2">
-            <img src={image.Logo} alt="Logo" className="h-10 w-auto" />
+            <img src={image.logoteam} alt="Logo" className="h-24 w-24" />
           </Link>
-
-          {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-6 font-bold font-grotesque text-gray-600">
             {NAV.map((item, i) => {
               const hasChild = Array.isArray(item.children) && item.children.length > 0;
@@ -139,7 +136,7 @@ export default function Header() {
                     <div
                       role="menu"
                       className="absolute left-0 mt-2 w-56 rounded-md bg-white shadow-lg ring-1 ring-black/10 p-2"
-                      onMouseEnter={() => scheduleOpen(i)}  // keep open while hovering panel
+                      onMouseEnter={() => scheduleOpen(i)} 
                       onMouseLeave={() => scheduleClose()}
                     >
                       {item.children.map((child) => (
@@ -159,8 +156,6 @@ export default function Header() {
               );
             })}
           </nav>
-
-          {/* Mobile burger */}
           <button
             className="md:hidden text-3xl text-blue-700 focus:outline-none"
             onClick={toggleMenu}
@@ -171,8 +166,6 @@ export default function Header() {
           </button>
         </div>
       </div>
-
-      {/* Mobile drawer */}
       <div
         className={`md:hidden bg-white border-t shadow-lg transition-all duration-300 ease-in-out ${
           menuOpen ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0 overflow-hidden"
@@ -204,8 +197,6 @@ export default function Header() {
                     </button>
                   )}
                 </div>
-
-                {/* Mobile submenu (accordion) */}
                 {hasChild && (
                   <div
                     className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${

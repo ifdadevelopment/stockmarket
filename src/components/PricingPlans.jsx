@@ -1,7 +1,3 @@
-// PricingPlans.jsx
-// React 18.x + Tailwind CSS 3.4.x
-// Responsive pricing section matching the provided layout (two bordered cards, centered heading, save badges, CTA buttons).
-// Usage: <PricingPlans />
 
 const PLANS = [
   {
@@ -27,7 +23,6 @@ const PLANS = [
 export default function PricingPlans() {
   return (
     <section className="relative bg-white">
-      {/* Decorative half-circles (top corners) */}
       <div aria-hidden className="pointer-events-none absolute -top-28 -left-28 h-56 w-56 rounded-full bg-slate-300/50" />
       <div aria-hidden className="pointer-events-none absolute -top-28 -right-28 h-56 w-56 rounded-full bg-slate-300/50" />
 
