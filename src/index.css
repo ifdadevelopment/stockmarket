@@ -100,3 +100,14 @@ section[id] {
     border: none;
     cursor: pointer;
 }
+@keyframes Home_spin__VUW1t {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    to {
+        transform: rotate(1turn)
+    }
+  }
+
+  .Home_spinAnimation__0pbkn { animation: Home_spin__VUW1t 20s linear infinite; }

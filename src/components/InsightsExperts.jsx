@@ -156,20 +156,20 @@ function ExpertCard({ item }) {
             href={item.href}
             target="_blank"
             rel="noreferrer"
-            className="group/card relative flex-shrink-0 flex flex-col items-center duration-300 w-[70%] sm:w-[45%] md:w-[33.333%] lg:w-[20%] px-3"
+            className="group/card relative flex-shrink-0 flex flex-col items-center duration-300  w-[70%] sm:w-[45%] md:w-[33.333%] lg:w-[20%] px-3"
         >
             <img
                 src={item.rotateBg}
                 alt=""
-                className="lg:w-[160px] lg:h-[160px] w-[120px] h-[120px] absolute -top-[10px] hidden lg:block"
-                style={{ animation: "spin 12s linear infinite" }}
+                className=" absolute -top-[2px] w-[120px] h-[120px] lg:w-[160px] lg:h-[160px] block lg:hidden lg:group-hover/card:block Home_spinAnimation__0pbkn"
+            // style={{ animation: "spin 12s linear infinite" }}
             />
 
             <div className="relative pt-6">
                 <img
                     src={item.avatar}
                     alt={item.name}
-                    className="grayscale group-hover/card:grayscale-0 transition-all scale-[0.9] object-contain lg:w-[140px] w-[100px] h-auto mx-[8px] lg:mx-[12px]"
+                    className="grayscale scale-[0.9]  lg:-translate-y-0 lg:w-[140px] w-[100px] h-auto lg:mx-[12px] mx-[8px] duration-300 object-contain"
                 />
             </div>
             <p className="lg:text-[22px] font-bold mt-[24px] opacity-50 font-figtree text-center pb-[138px]">
@@ -243,7 +243,7 @@ export default function InsightsExperts() {
                     className="flex overflow-x-auto scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none]"
                 >
                     <style>
-                        {`.group [ref]::-webkit-scrollbar{display:none}`}
+                        {`group [ref]::-webkit-scrollbar{display:none}`}
                     </style>
                     <div className="flex items-stretch gap-0">
                         {EXPERTS.map((e, idx) => (

@@ -252,7 +252,6 @@ export default function FinancialFreedomSection({
                   />
                 </div>
               </div>
-              <div className="h-full flex relative" />
               <div className={`h-full flex relative overflow-hidden ${active === 2 ? "block" : "hidden"}`}>
                 <div
                   id="3"
@@ -261,7 +260,7 @@ export default function FinancialFreedomSection({
                 >
                   <img
                     alt=""
-                    className="rotate-[180deg] md:w-[120px] lg:w-[180px] w-[80px] h-auto absolute lg:-right-[28px] right-[84px] md:right-[-70px] lg:top-[40px] md:top-[24px] top-[6px]"
+                    className="rotate-[180deg]  md:w-[120px] lg:w-[180px] w-[80px] h-auto absolute lg:-right-[28px] right-[84px] md:right-[-70px] lg:top-[40px] md:top-[24px] top-[6px]"
                     src={ff3Card1}
                   />
                   <img
