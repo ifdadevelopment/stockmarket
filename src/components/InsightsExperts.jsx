@@ -133,7 +133,7 @@ const EXPERTS = [
 
 function Arrow({ onClick, side = "left" }) {
     const common =
-        "bg-black/40 hover:bg-black/60 text-white hidden group-hover:flex absolute top-[36px] bottom-[160px] px-[16px] items-center justify-center rounded-s-[8px] transition";
+        " text-white hidden group-hover:flex absolute top-[36px] bottom-[160px] px-[16px] items-center justify-center rounded-s-[8px] transition";
     return (
         <button
             onClick={onClick}
@@ -177,10 +177,10 @@ function ExpertCard({ item }) {
             </p>
 
             <div
-                className={`absolute md:top-[172px] top-[174px] w-full min-w-[280px] lg:min-w-[auto] ${item.highlight ? "block" : "hidden group-hover/card:block"
+                className={`absolute md:top-[172px] top-[174px] w-full min-w-[300px] lg:min-w-[auto] ${item.highlight ? "block" : "hidden group-hover/card:block"
                     }`}
             >
-                <div className="bg-white/95 backdrop-blur-[8px] shadow-xl rounded-[12px] p-[24px] font-figtree">
+                <div className="bg-opacity-[0.05] backdrop-blur-[50px] mt-[24px] mb-[12px] text-[24px] font-semibold p-[24px] bg-[#fff] shadow-xl rounded-[12px] font-figtree absolute lg:min-w-[280px] min-w-[280px]">
                     <p className="text-[20px] lg:text-[24px] font-semibold">{item.name}</p>
                     <p className="text-[16px] font-medium flex gap-x-[5px] items-center mt-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" className="h-[24px] w-[24px]">

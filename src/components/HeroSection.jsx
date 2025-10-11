@@ -14,7 +14,7 @@ export default function HeroSection({
 }) {
   return (
     <section
-      className="relative w-full overflow-hidden bg-[#000] min-h-[480px] md:min-h-[340px] lg:min-h-[500px] sm:mt-[calc(var(--header-height))] mt-[calc(var(--header-height,80px)+40px)]"
+      className="relative w-full overflow-hidden bg-[#000] min-h-[480px] md:min-h-[340px] lg:min-h-[500px]  mt-[calc(var(--header-height,80px))]"
       aria-label="Hero section"
     >
       <img

@@ -86,3 +86,17 @@ section[id] {
   max-height: 400px;
   object-fit: cover;
 }
+.primaryButton {
+    padding: 22px 30px;
+    background: linear-gradient(180deg, #ff6f37, #ff603c);
+    box-shadow: 0 14px 32px rgba(255, 111, 55, .38);
+    border-radius: 20px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21.3089px;
+    line-height: 130%;
+    text-align: center;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}

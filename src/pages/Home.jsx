@@ -8,6 +8,12 @@ import HeroSection from '../components/HeroSection'
 import FinancialFreedomSection from '../components/FinancialFreedomSection'
 import StoxoBanner from '../components/StoxoBanner'
 import InsightsExperts from '../components/InsightsExperts'
+import InsideMarket from '../components/InsideMarket'
+import MediaPress from '../components/MediaPress'
+import StoxoPromo from '../components/StoxoPromo'
+import EdVisorySection from '../components/EdVisorySection'
+import MarketWrapSection from '../components/MarketWrapSection'
+import CommunityHero from '../components/CommunityHero'
 
 const Home = () => {
   return (
@@ -16,11 +22,17 @@ const Home = () => {
       <StoxoBanner/>
       <FinancialFreedomSection/>
       <InsightsExperts/>
-      <HomeMain />
+      <InsideMarket/>
+      <StoxoPromo/>
+      <CommunityHero/>
+      <MarketWrapSection/>
+      <EdVisorySection/>
+      <MediaPress/>
+      {/* <HomeMain />
       <Training />
       <Advisory />
       <AppsSection />
-      <StrategySection />
+      <StrategySection /> */}
     </>
   )
 }

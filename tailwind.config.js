@@ -10,17 +10,26 @@ export default {
         spinSlow: {
           to: { transform: "rotate(360deg)" },
         },
+         "press-marquee": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
-        // 20s, linear, infinite (your original)
         "spin-20": "spinSlow 20s linear infinite",
+        "press-marquee": "press-marquee 28s linear infinite",
       },
        backgroundImage: {
         'btn-orange': 'linear-gradient(180deg, #ff6f37, #ff603c)',
         'home-page-gradient': 'linear-gradient(200deg, #1f2127 -5.65%, #6545d7 45.63%, #27253a 97.6%)',
+        btnOrangeGradient: "linear-gradient(180deg, #ff6f37, #ff603c)",
+      },
+      boxShadow: {
+        btnOrange: "0 8px 24px rgba(255, 111, 55, 0.25)",
       },
       fontFamily: {
         nunito: ['Nunito', 'sans-serif'],
+        figtree: ["Figtree", "system-ui", "sans-serif"],
          openSans: ['Open Sans', 'sans-serif'],
          grotesque: ['"Darker Grotesque"', "Helvetica", "Arial", "Lucida", "sans-serif"],
         sans:['"Darker Grotesque"', "Helvetica", "Arial", "Lucida", "sans-serif"],
@@ -30,6 +39,8 @@ export default {
         primary: "var(--color-primary)",
         secondary: "var(--color-secondary)",
         menu:"var(--color-menucolor)",
+           greytext: "#6D6D6D",
+        exploreHeading: "#8938F7",
       },
     },
   },

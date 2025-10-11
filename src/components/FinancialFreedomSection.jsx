@@ -105,7 +105,7 @@ export default function FinancialFreedomSection({
         <div className="min-h-[36px] lg:min-h-[50px] flex w-full justify-center">
           <div
             ref={containerRef}
-            className="flex relative self-center border-[1.5px] lg:border-[2px]  border-[#391A643D] border-opacity-[0.25] rounded-[16px] mt-[28px] lg:mt-[48px] gap-x-[4px] lg:gap-x-[10px] px-[2px] lg:px-[3px]"
+            className="flex relative self-center border-[1.5px] lg:border-[2px]  border-[#391A643D] border-opacity-[0.25] rounded-[16px] mt-[28px] lg:mt-[48px] gap-x-[4px] lg:gap-x-[10px] "
           >
             {tabs.map((t, i) => {
               const activeClass =
