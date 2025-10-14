@@ -14,6 +14,13 @@ import StoxoPromo from '../components/StoxoPromo'
 import EdVisorySection from '../components/EdVisorySection'
 import MarketWrapSection from '../components/MarketWrapSection'
 import CommunityHero from '../components/CommunityHero'
+import AlertBanner from '../components/AlertBanner'
+import IntradayHero from '../components/IntradayHero'
+import WhatToExpect from '../components/WhatToExpect'
+import OnboardingCompliance from '../components/Onboarding'
+import SubscribePlans from '../components/SubscribePlans'
+import WhatMakesUsBetter from '../components/WhatMakesUsBetter'
+import FaqSimple from '../components/FaqSimple'
 
 const Home = () => {
   return (
@@ -28,11 +35,18 @@ const Home = () => {
       <MarketWrapSection/>
       <EdVisorySection/>
       <MediaPress/> */}
-      <HomeMain />
+      {/* <HomeMain />
       <Training />
       <Advisory />
       <AppsSection />
-      <StrategySection />
+      <StrategySection /> */}
+          <AlertBanner />
+                  <IntradayHero />
+                  <WhatToExpect />
+                  <OnboardingCompliance />
+                  <SubscribePlans />
+                  <WhatMakesUsBetter />
+                  <FaqSimple />
     </>
   )
 }
