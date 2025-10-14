@@ -60,7 +60,7 @@ export default function FaqSimple() {
           </h2>
           <p className="mt-3 text-[18px] sm:text-[18px] font-semibold text-gray-600">
             Here is the list of questions generally asked by people. Hope you find your answer here.
-            If not feel free to contact us at <span className="font-semibold">+91-9500077790</span>.
+            If not feel free to contact us at <span className="font-semibold">+91 9161276060</span>.
           </p>
         </div>
 
