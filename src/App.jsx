@@ -13,6 +13,8 @@ import TradingTips from "./pages/TradingTips";
 import InteradayTips from "./pages/InteradayTips";
 import BlogList from "./components/BlogList";
 import BlogDetail from "./pages/BlogDetail";
+import Aboutus from "./pages/Aboutus";
+import Services from "./pages/Services";
 const isMinimalLayout = location.pathname === "/home";
 const App = () => {
   return (
@@ -20,10 +22,13 @@ const App = () => {
       {!isMinimalLayout && <Header />}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/training" element={<TrainingPage />} />
+        <Route path="/about-us" element={<Aboutus />} />
+        <Route path="/about-us" element={<Aboutus />} />
+        <Route path="/services" element={<Services />} />
+        {/* <Route path="/training" element={<TrainingPage />} />
         <Route path="/trading-tips" element={<TradingTips />} />
         <Route path="/trading-tips/intraday" element={<InteradayTips />} />
-        <Route path="/trading-tips/intraday" element={<InteradayTips />} />
+        <Route path="/trading-tips/intraday" element={<InteradayTips />} /> */}
 
         <Route path="/blog" element={<BlogList />} />
         <Route path="/blog/:slug" element={<BlogDetail />} />

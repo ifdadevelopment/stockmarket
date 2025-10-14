@@ -1,30 +1,13 @@
 import React from "react";
+import { FaChartLine, FaRegHandshake, FaCogs, FaRegArrowAltCircleRight } from "react-icons/fa"; // Updated icons for Tradeohedge
 
+// Updated icons to align with Tradeohedge's services
 const IconWorkflow = () => (
-  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <path
-      d="M6 4h12M12 4v6M6 10h12M6 14h12M6 20h12M6 10v10M18 10v10"
-      stroke="#E0A400"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
-    <rect x="4" y="2" width="4" height="4" rx="1" fill="#E0A400" />
-    <rect x="4" y="18" width="4" height="4" rx="1" fill="#E0A400" />
-    <rect x="16" y="18" width="4" height="4" rx="1" fill="#E0A400" />
-  </svg>
+  <FaChartLine className="text-4xl text-primary" />
 );
 
 const IconKey = () => (
-  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <path
-      d="M14.5 3a5.5 5.5 0 1 0 3.89 9.39L22 16v3h-3v3h-3v-3h-3l-1.09-1.09"
-      stroke="#DAA520"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <circle cx="14.5" cy="8.5" r="1.5" fill="#DAA520" />
-  </svg>
+  <FaRegHandshake className="text-4xl text-primary" />
 );
 
 const ArrowRight = () => (
@@ -90,7 +73,7 @@ function Card({ tone = "white", icon, title, body, ctaLabel = "LEARN MORE", href
 export default function AppsSection() {
   return (
     <section
-      className="relative overflow-hidden mt-[calc(var(--header-height)+40px)]"
+      className="relative overflow-hidden mt-[calc(var(--header-height)+40px)] font-publicSans"
       id="tools"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
@@ -99,22 +82,21 @@ export default function AppsSection() {
             className="font-grotesque font-black text-black leading-[1.05]
                        text-[40px] sm:text-[48px] md:text-[56px]"
           >
-            Apps
+            Tradeohedge Tools
           </h2>
           <p
             className="mt-4 text-[22px] sm:text-[20px] leading-7 text-gray-700/80 font-semibold
                        lg:max-w-[520px] lg:justify-self-end"
           >
-            The new-age digital infrastructure to empower professional stock traders
-            and investors.
+            The next-gen digital infrastructure designed to empower traders with cutting-edge tools and strategies for the stock and crypto markets.
           </p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
           <Card
             tone="white"
             icon={<IconWorkflow />}
-            title="Workflows"
-            body="A Workflow based learning platform for stock market learners to learn, practice, and experience on demand, from anywhere. Engaging and effective learning with Quizzes, Tasks, resources, community feedback, opinion polls, and expert support."
+            title="Trading Workflows"
+            body="Tradeohedge provides a streamlined workflow for stock and crypto market learners. From on-demand lessons to interactive quizzes, our platform engages you at every step with community feedback, expert support, and resources."
             ctaLabel="LEARN MORE"
             href="#"
           />
@@ -122,8 +104,8 @@ export default function AppsSection() {
             <Card
               tone="muted"
               icon={<IconKey />}
-              title="Primer"
-              body="A powerful platform with 10+ featured tools for stock trading and analysis. Make your analysis more efficient with intraday scanners, derivative filters, options strategy builder, intraday simulator, swing trade trackers, and more."
+              title="Tradeohedge Primer"
+              body="Our all-in-one platform offers tools for in-depth analysis, stock screening, crypto tracking, and much more. Make smarter trades using data-driven insights and real-time market trends, powered by Tradeohedge."
               ctaLabel="VIEW"
               href="#"
             />

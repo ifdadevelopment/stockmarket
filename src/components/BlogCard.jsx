@@ -25,13 +25,13 @@ export default function BlogCard({ blog }) {
               </span>
             ))}
           </div>
-          <h3 className="text-lg font-extrabold text-gray-900 line-clamp-2">
+          <h3 className=" text-md sm:text-sm font-extrabold text-gray-900 line-clamp-2">
             {blog.title}
           </h3>
-          <p className="mt-2 text-xl sm:text-lg font-semibold text-gray-600 line-clamp-2">
+          <p className="mt-2  text-md sm:text-sm font-semibold text-gray-600 line-clamp-2">
             {blog.excerpt}
           </p>
-          <div className="mt-4 flex text-xl sm:text-lg font-semibold items-center gap-3 text-sm text-gray-500">
+          <div className="mt-4 flex  text-md sm:text-sm font-semibold items-center gap-3 text-sm text-gray-500">
             {blog.avatar && (
               <img
                 src={blog.avatar}

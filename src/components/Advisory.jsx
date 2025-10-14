@@ -1,6 +1,7 @@
 import React from "react";
 import { LuSprout, LuLightbulb } from "react-icons/lu";
 import { PiCurrencyInrBold } from "react-icons/pi";
+import { FaBullhorn } from "react-icons/fa"; // New icon for "Tradeohedge"
 
 const Card = ({ icon, title, desc, href = "#" }) => (
   <a
@@ -9,7 +10,7 @@ const Card = ({ icon, title, desc, href = "#" }) => (
                transition-all duration-300 hover:-translate-y-1 hover:bg-black hover:text-white"
   >
     <div className="p-8">
-      <div className="text-emerald-700 text-3xl transition-colors duration-300 group-hover:text-white">
+      <div className="text-primary text-3xl transition-colors duration-300 group-hover:text-white">
         {icon}
       </div>
       <h3 className="mt-4 text-xl font-extrabold text-gray-900 transition-colors duration-300 group-hover:text-white">
@@ -28,7 +29,7 @@ const Card = ({ icon, title, desc, href = "#" }) => (
 
 export default function AdvisorySection() {
   return (
-    <section className="relative overflow-hidden mt-[calc(var(--header-height)+40px)]"
+    <section className="relative overflow-hidden mt-[calc(var(--header-height)+40px)] font-publicSans"
       id="recommendations">
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-y-0 right-0 w-full md:w-[60%] bg-gradient-to-b from-white via-white to-gray-100" />
@@ -46,7 +47,7 @@ export default function AdvisorySection() {
           <div className="max-w-xl md:pr-10">
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900">Advisory</h2>
             <p className="mt-4 text-[24px] sm:text-[20px] leading-7 text-gray-700/80 font-medium">
-              Expert research backed actionable recommendations for traders and investors.
+              Expert research-backed actionable recommendations for traders and investors.
             </p>
           </div>
 
@@ -73,6 +74,16 @@ export default function AdvisorySection() {
                 title="Weekly Option Strategy"
                 desc="Get risk-adjusted returns using optimized and back-tested option strategies for consistent outcomes."
               />
+            </div>
+
+            {/* New "Tradeohedge" Card */}
+            <div className="relative">
+              <Card
+                icon={<FaBullhorn />}
+                title="Tradeohedge"
+                desc="Get expert advice for risk management and advanced hedging strategies tailored to your portfolio."
+              />
+              <div className="absolute left-3 right-3 -bottom-3 h-2 rounded bg-black/10 blur-md" />
             </div>
           </div>
         </div>

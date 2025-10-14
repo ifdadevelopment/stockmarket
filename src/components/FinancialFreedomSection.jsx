@@ -255,7 +255,7 @@ export default function FinancialFreedomSection({
               <div className={`h-full flex relative overflow-hidden ${active === 2 ? "block" : "hidden"}`}>
                 <div
                   id="3"
-                  className="absolute left-[24px] top-0 lg:h-[450px] lg:w-[400px] w-[200px] h-[225px] flex flex-col items-start mr-auto mb-auto rotate-[-10deg]"
+                  className="absolute left-[24px] top-0 lg:h-[450px] lg:w-[400px] w-[200px] h-[225px] flex flex-col items-start mr-auto mb-auto rotate-[0deg]"
                   style={{ transformOrigin: "50% 0%" }}
                 >
                   <img

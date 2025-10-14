@@ -1,21 +1,20 @@
 import React from "react";
 import { GoArrowRight } from "react-icons/go";
-import { image } from "../../data";
+import { image } from "../../data"; // Import image from your data source
 
 const StrategySection = ({
     title = "What’s your trading strategy?",
-    subtitle = "Looking to develop a winning stock market strategy?",
-    body = `EQSIS provides personalized stock market training and live market practice to develop effective strategies. At EQSIS you’ll find tools you need to succeed in the stock market.`,
-    imgSrc = image?.stockPng,
+    subtitle = "Develop a winning strategy with Tradeohedge",
+    body = `Tradeohedge provides personalized training and live market practice to develop effective trading strategies. Our platform offers all the tools and resources you need to succeed in the stock and crypto markets.`,
+    imgSrc = image?.stockPng,  // Default to image from data
     onContact = () => { },
 }) => {
     return (
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 font-publicSans">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
                 <div>
                     <h2
-                        className="font-grotesque font-black text-black leading-[1.05]
-                       text-[36px] sm:text-[44px] md:text-[56px]"
+                        className="font-grotesque font-black text-black leading-[1.05] text-[36px] sm:text-[44px] md:text-[56px]"
                     >
                         {title}
                     </h2>
@@ -24,7 +23,7 @@ const StrategySection = ({
                         {subtitle}
                     </p>
 
-                    <p className="mt-4 font-bold text-md leading-7">{body}</p>
+                    <p className="mt-4 font-semibold text-md leading-7 text-gray-700">{body}</p>
                     <button
                         onClick={onContact}
                         className="group mt-8 inline-flex font-bold text-md items-center justify-center gap-2

@@ -18,7 +18,7 @@ import CommunityHero from '../components/CommunityHero'
 const Home = () => {
   return (
     <>
-      <HeroSection />
+      {/* <HeroSection />
       <StoxoBanner/>
       <FinancialFreedomSection/>
       <InsightsExperts/>
@@ -27,12 +27,12 @@ const Home = () => {
       <CommunityHero/>
       <MarketWrapSection/>
       <EdVisorySection/>
-      <MediaPress/>
-      {/* <HomeMain />
+      <MediaPress/> */}
+      <HomeMain />
       <Training />
       <Advisory />
       <AppsSection />
-      <StrategySection /> */}
+      <StrategySection />
     </>
   )
 }

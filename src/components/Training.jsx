@@ -1,4 +1,5 @@
 import React from "react";
+import { FaChartLine, FaRegHandshake, FaCogs } from "react-icons/fa"; // Updated icons for Tradeohedge
 import { image } from "../../data";
 
 const BRAND = "#0E61F6"; 
@@ -7,7 +8,7 @@ const Training = () => {
   return (
     <section
       id="learn"
-      className="relative overflow-hidden mt-[calc(var(--header-height)+40px)]"
+      className="relative overflow-hidden mt-[calc(var(--header-height)+40px)] font-publicSans"
       style={{ backgroundColor: image?.Bg || "#f5f6f7" }}
     >
       <div className="pointer-events-none absolute inset-0 -z-10">
@@ -19,31 +20,22 @@ const Training = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid gap-10 lg:grid-cols-3 items-start">
           <div className="max-w-md">
-            <h3 className="font-grotesque font-black text-black leading-[1.05]
-                           text-[40px] sm:text-[48px] md:text-[56px]">
+            <h3 className="font-grotesque font-black text-black leading-[1.05] text-[40px] sm:text-[48px] md:text-[56px]">
               Training
             </h3>
             <p className="mt-4 text-[24px] sm:text-[20px] leading-7 text-gray-700/80 font-medium">
-              Basics to advance structured stock market courses with interactive
+              Basics to advanced structured stock market courses with interactive
               training, practice, and support.
             </p>
           </div>
           <div className="lg:col-span-2 grid gap-8 md:grid-cols-2">
-            {/* Card 1 */}
+            {/* Stock Trading Course Card */}
             <article
-              className="group bg-white rounded-xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.08)]
-                         transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
-                         hover:bg-black"
+              className="group bg-white rounded-xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:bg-black"
             >
-              {/* icon */}
-              <div className="inline-flex items-center justify-center h-9 w-9 rounded-md
-                              bg-orange-100 text-orange-500 mb-4
-                              transition-colors duration-300 group-hover:bg-white/10 group-hover:text-white">
-                <div className="flex gap-0.5">
-                  <span className="block h-4 w-1 bg-current/70" />
-                  <span className="block h-6 w-1 bg-current/80" />
-                  <span className="block h-5 w-1 bg-current/90" />
-                </div>
+              {/* Icon */}
+              <div className="inline-flex items-center justify-center h-9 w-9 rounded-md bg-primary/10 text-primary mb-4 transition-colors duration-300 group-hover:bg-white/10 group-hover:text-white">
+                <FaChartLine className="text-4xl" />
               </div>
 
               <h4 className="text-xl font-extrabold text-black mb-2 transition-colors duration-300 group-hover:text-white">
@@ -56,27 +48,19 @@ const Training = () => {
               </p>
               <a
                 href="#stock-trading"
-                className="inline-block font-extrabold uppercase tracking-wide
-                           transition-colors duration-300"
+                className="inline-block font-extrabold uppercase tracking-wide transition-colors duration-300"
                 style={{ color: BRAND }}
               >
                 Know More
               </a>
             </article>
 
-            {/* Card 2 */}
+            {/* Value Investing Course Card */}
             <article
-              className="group bg-white rounded-xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.08)]
-                         transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
-                         hover:bg-black"
+              className="group bg-white rounded-xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:bg-black"
             >
-              <div className="inline-flex items-center justify-center h-9 w-9 rounded-md
-                              bg-orange-100 text-orange-500 mb-4
-                              transition-colors duration-300 group-hover:bg-white/10 group-hover:text-white">
-                <div className="relative h-5 w-6">
-                  <span className="absolute left-0 bottom-0 h-[2px] w-full bg-current/60" />
-                  <span className="absolute left-0 bottom-0 h-[2px] w-3/5 bg-current rotate-12 origin-left" />
-                </div>
+              <div className="inline-flex items-center justify-center h-9 w-9 rounded-md bg-primary/10 text-primary mb-4 transition-colors duration-300 group-hover:bg-white/10 group-hover:text-white">
+                <FaRegHandshake className="text-4xl" />
               </div>
 
               <h4 className="text-xl font-extrabold text-black mb-2 transition-colors duration-300 group-hover:text-white">
@@ -89,8 +73,7 @@ const Training = () => {
               </p>
               <a
                 href="#value-investing"
-                className="inline-block font-extrabold uppercase tracking-wide
-                           transition-colors duration-300"
+                className="inline-block font-extrabold uppercase tracking-wide transition-colors duration-300"
                 style={{ color: BRAND }}
               >
                 Know More

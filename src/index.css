@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 :root {
-  --color-primary: #1e76cd; 
-  --color-secondary: #444444;
+  --color-primary: #116a9a; 
+  --color-secondary: #ffea00;
   --color-menucolor:#000006;
 }
 @layer utilities {

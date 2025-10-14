@@ -24,7 +24,7 @@ export default function BlogDetail() {
   const { post, prev, next } = ctx;
 
   return (
-    <article className="mt-[calc(var(--header-height,80px)+24px)]">
+    <article className="mt-[calc(var(--header-height,80px)+24px)] font-publicSans">
       {/* Hero */}
       <header className="bg-gradient-to-b from-slate-50 to-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 md:pt-14">
@@ -42,18 +42,18 @@ export default function BlogDetail() {
                 alt={post.author}
               />
             )}
-            <span className="text-xl sm:text-lg font-semibold">{post.author}</span>
+            <span className="text-lg sm:text-md font-semibold">{post.author}</span>
             <span>•</span>
             <time dateTime={post.publishedAt } className="text-xl sm:text-lg font-semibold">
               {new Date(post.publishedAt).toLocaleDateString()}
             </time>
             <span>•</span>
-            <span className="text-xl sm:text-lg font-semibold">{post.readingMinutes} min read</span>
-            <div className="hidden sm:block ml-auto text-xl sm:text-lg font-semibold">
+            <span className="text-lg sm:text-md font-semibold">{post.readingMinutes} min read</span>
+            <div className="hidden sm:block ml-auto text-md sm:text-sm font-semibold">
               {post.tags.map((t) => (
                 <span
                   key={t}
-                  className="ml-2 text-xl sm:text-lg font-semibold uppercase text-sky-700 bg-sky-50 px-2 py-1 rounded"
+                  className="ml-2  text-md sm:text-sm font-semibold uppercase text-sky-700 bg-sky-50 px-2 py-1 rounded"
                 >
                   {t}
                 </span>
@@ -86,10 +86,10 @@ export default function BlogDetail() {
             {prev && (
               <Link
                 to={`/blog/${prev.slug}`}
-                className="block rounded-md text-xl sm:text-lg font-semibold bg-slate-50 hover:bg-slate-100 p-4 ring-1 ring-black/5"
+                className="block rounded-md text-lg sm:text-md font-semibold bg-slate-50 hover:bg-slate-100 p-4 ring-1 ring-black/5"
               >
                 <div className="text-xs text-gray-500">Previous</div>
-                <div className="font-bold">{prev.title}</div>
+                <div className="font-bold text-sm ">{prev.title}</div>
               </Link>
             )}
           </div>
@@ -97,10 +97,10 @@ export default function BlogDetail() {
             {next && (
               <Link
                 to={`/blog/${next.slug}`}
-                className="block rounded-md text-xl sm:text-lg font-semibold bg-slate-50 hover:bg-slate-100 p-4 ring-1 ring-black/5"
+                className="block rounded-md text-lg sm:text-md font-semibold bg-slate-50 hover:bg-slate-100 p-4 ring-1 ring-black/5"
               >
                 <div className="text-xs text-gray-500">Next</div>
-                <div className="font-bold">{next.title}</div>
+                <div className="font-bold text-sm">{next.title}</div>
               </Link>
             )}
           </div>
