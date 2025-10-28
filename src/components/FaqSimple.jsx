@@ -1,41 +1,43 @@
 import React from "react";
 
 const faqs = [
-  // left column
+  // Left Column
   [
     {
       q: "DO YOU HAVE MONTHLY OR BI–ANNUAL SERVICES?",
-      a: "Yes, we currently have short-term plans like 3 months, 6 months and annual. Meanwhile, we make sure the price is affordable to subscribe to.",
+      a: "Yes, Tradeohedge Private Limited currently offers flexible subscription plans including 3 months, 6 months, and annual durations. All our plans are structured to remain affordable while ensuring premium-quality research and trading support.",
     },
     {
       q: "CAN I EXPECT A SURE–SHOT CALL?",
-      a: "We take serious efforts in studying the trend/momentum of the stock. However, results of a particular recommendation are not certain. Hence we do not guarantee outcomes.",
+      a: "No. At Tradeohedge, we rely on detailed market research, data-driven analysis, and trend-based evaluations. However, the stock market is inherently uncertain—hence, we do not provide guaranteed or sure-shot recommendations.",
     },
     {
       q: "WHO IS YOUR LEAD ANALYST?",
-      a: "EQSIS Research Services are delivered by SEBI Registered Research Analyst, Valarmurugan.S (SEBI REG NO: INH200003000).",
+      a: "Tradeohedge Private Limited’s research and advisory services are managed by SEBI-registered professionals and experienced market analysts who ensure ethical and compliant research insights.",
     },
     {
       q: "DOES SEBI/NISM REGISTRATION ENSURE PERFORMANCE?",
-      a: "Registration from SEBI and certification from NISM do not guarantee performance or provide assurance of returns to investors.",
+      a: "No. SEBI or NISM registration ensures ethical standards and regulatory compliance, but it does not guarantee any performance, profits, or assured returns on investments.",
     },
   ],
-  // right column
+
+  // Right Column
   [
     {
       q: "HOW MUCH CAPITAL IS NEEDED TO TRADE YOUR RECOMMENDATIONS?",
-      a: "We don’t insist on a minimum quantity to trade. We expect clients to take a consistent risk, avoiding overtrades.",
+      a: "We do not enforce a fixed minimum capital. We recommend that clients maintain consistent position sizing and risk management suited to their financial capacity and trading style.",
     },
     {
-      q: "CAN I SHARE YOUR RECOMMENDATION WITH OTHERS?",
-      a: "The subscription is for personal use only. Written permission from EQSIS and a SEBI research analyst license are required to share calls.",
+      q: "CAN I SHARE YOUR RECOMMENDATIONS WITH OTHERS?",
+      a: "No. The subscription and research reports from Tradeohedge Private Limited are intended strictly for personal use. Redistribution or sharing without written consent is a violation of our terms and SEBI compliance guidelines.",
     },
     {
-      q: "DO YOU REFUND OR MONEY-BACK OFFER?",
-      a: "We don’t commit/guarantee call performance. Our charges are minimal and we provide ideas we believe are good—hence we don’t encourage refunds.",
+      q: "DO YOU OFFER REFUNDS OR MONEY-BACK GUARANTEES?",
+      a: "Tradeohedge Private Limited does not provide refunds or money-back guarantees. We deliver well-researched trade ideas, but due to market volatility, we cannot commit to guaranteed performance.",
     },
   ],
 ];
+
 
 function QA({ q, a }) {
   return (
@@ -60,7 +62,7 @@ export default function FaqSimple() {
           </h2>
           <p className="mt-3 text-[18px] sm:text-[18px] font-semibold text-gray-600">
             Here is the list of questions generally asked by people. Hope you find your answer here.
-            If not feel free to contact us at <span className="font-semibold">+91 9161276060</span>.
+            If not feel free to contact us at <span className="font-semibold">+91 919435086282</span>.
           </p>
         </div>
 

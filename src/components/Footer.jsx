@@ -29,18 +29,18 @@ const linkGroups = [
   },
   {
     title: "Stay Connected",
-    links: [{ label: "Contact Us", href: "mailto:Info@tradeohedge.com" }],
+    links: [{ label: "Contact Us", href: "mailto:csnewtondhar@gmail.com" }],
   },
 ];
 
 const socials = [
   {
-    href: "https://www.facebook.com/stockGRO/",
+    href: "https://www.facebook.com",
     icon: <FaFacebookF />,
     alt: "Facebook",
   },
   {
-    href: "https://www.linkedin.com/company/",
+    href: "https://www.linkedin.com",
     icon: <FaLinkedinIn />,
     alt: "LinkedIn",
   },
@@ -53,11 +53,6 @@ const socials = [
     href: "https://twitter.com/",
     icon: <FaXTwitter />,
     alt: "X (Twitter)",
-  },
-  {
-    href: "https://discord.gg/95zFeVyuYr/",
-    icon: <FaDiscord />,
-    alt: "Discord",
   },
 ];
 
@@ -98,10 +93,10 @@ export default function Footer() {
               <div className="flex items-center">
                 <img alt="mail" src={image.mail} className="h-3 w-3 mt-1" />
                 <a
-                  href="mailto:Info@tradeohedge.com"
+                  href="mailto:csnewtondhar@gmail.com"
                   className="ml-4 text-[14px] opacity-80"
                 >
-                  Info@tradeohedge.com
+                  csnewtondhar@gmail.com
                 </a>
               </div>
             </div>
@@ -158,17 +153,17 @@ export default function Footer() {
             <p className="flex flex-col lg:flex-row items-start">
               Copyrights © 2025 All rights reserved by
               <span className="text-secondary lg:ml-1">
-                Tradeohedge Private Limited
+                NKD AND ASSOCIATES
               </span>
             </p>
-            <p className="opacity-40 mt-4 lg:mt-1">SEBI RA Reg : INH000018300</p>
+            <p className="opacity-40 mt-4 lg:mt-1">SEBI RA Reg : INH000010593</p>
           </div>
           <div className="flex lg:justify-end lg:mt-0 gap-3">
-            <a href="/tandc/" className="opacity-60 hover:opacity-100">
+            <a href="/terms-conditions" className="opacity-60 hover:opacity-100">
               Terms &amp; Conditions
             </a>
             <div className="h-1 w-1 mt-2 bg-white rounded-full" />
-            <a href="/privacy/" className="opacity-60 hover:opacity-100">
+            <a href="/privacy-policy" className="opacity-60 hover:opacity-100">
               Privacy Policy
             </a>
           </div>

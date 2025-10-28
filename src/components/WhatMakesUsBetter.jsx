@@ -25,7 +25,7 @@ function Feature({ icon: Icon, title, children }) {
 
 export default function WhatMakesUsBetter() {
   return (
-    <section className="bg-white">
+    <section className="bg-white ">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="text-[24px] sm:text-[28px] md:text-[40px] font-black text-gray-900">

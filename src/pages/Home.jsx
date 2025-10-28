@@ -40,13 +40,13 @@ const Home = () => {
       <Advisory />
       <AppsSection />
       <StrategySection /> */}
-          <AlertBanner />
-                  <IntradayHero />
-                  <WhatToExpect />
-                  <OnboardingCompliance />
-                  <SubscribePlans />
-                  <WhatMakesUsBetter />
-                  <FaqSimple />
+      <AlertBanner />
+      <IntradayHero />
+      <WhatToExpect />
+      <OnboardingCompliance />
+      <SubscribePlans />
+      <WhatMakesUsBetter />
+      <FaqSimple />
     </>
   )
 }
