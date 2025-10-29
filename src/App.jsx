@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom"; // Import Navigate here
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Header";
@@ -20,12 +20,17 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { useAuth } from "./components/authContext";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsConditions from "./pages/TermsConditions";
+import { useEffect } from "react";
 
 const App = () => {
-  const { user } = useAuth();
-
-  // Conditionally render the header and footer based on the current route
-  const isMinimalLayout = location.pathname === "/login" || location.pathname === "/home"; 
+  const { user } = useAuth(); 
+  const navigate = useNavigate();
+  const isMinimalLayout = location.pathname === "/home";
+  useEffect(() => {
+    if (user && location.pathname === "/login") {
+      navigate("/admin-dashboard"); 
+    }
+  }, [user, navigate]);
 
   return (
     <>
@@ -33,14 +38,13 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about-us" element={<Aboutus />} />
-        <Route path="/login" element={<LoginPage />} />
-        
-        {/* Protected Routes */}
-        <Route element={<ProtectedRoute />}>
-          <Route path="/admin-dashboard" element={<AdminDashboard />} />
-          <Route path="/admin-dashboard/register" element={<RegisterPage />} />
-          <Route path="/admin-dashboard/payment-list" element={<PaymentListPage />} />
-          <Route path="/admin-dashboard/admincoupongenerator" element={<CouponGenerator />} />
+                <Route path="/login" element={user ? <Navigate to="/admin-dashboard" /> : <LoginPage />} />
+       <Route element={<ProtectedRoute />}>
+          <Route path="/admin-dashboard" element={<AdminDashboard />}>
+            <Route path="register" element={<RegisterPage />} />
+            <Route path="payment-list" element={<PaymentListPage />} />
+            <Route path="admincoupongenerator" element={<CouponGenerator />} />
+          </Route>
         </Route>
 
         <Route path="/services" element={<Services />} />

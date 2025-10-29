@@ -1,12 +1,16 @@
 import React from "react";
 import { useNavigate, Outlet } from "react-router-dom";
+import { useAuth } from "../components/authContext"; // Import the useAuth hook
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
+  const { logout } = useAuth(); // Use the logout function from the context
 
+  // Function to handle logout
   const handleLogout = () => {
-    localStorage.removeItem("authToken");
-    navigate("/login");
+    localStorage.removeItem("authToken"); // Remove authToken from localStorage
+    logout(); // Clear user from the context
+    navigate("/login"); // Redirect to the login page
   };
 
   return (
@@ -34,7 +38,7 @@ const AdminDashboard = () => {
             View Payments
           </button>
           <button
-            onClick={handleLogout}
+            onClick={handleLogout} // Trigger the logout function on click
             className="w-full text-left bg-red-600 hover:bg-red-700 text-white py-3 px-4 rounded-lg shadow-md transition-all mt-6"
           >
             Logout

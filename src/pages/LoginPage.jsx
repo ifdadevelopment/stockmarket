@@ -14,11 +14,13 @@ const LoginPage = () => {
   const { login } = useAuth();
   const API_URL =
     import.meta.env.VITE_APP_ENV === "production"
-      ? import.meta.env.VITE_APP_BACKEND_PROD
-      : import.meta.env.VITE_APP_BACKEND_DEV;
+      ? import.meta.env.VITE_APP_BACKEND_PROD || "https://stock.banarasdigitalsolution.com"
+      : import.meta.env.VITE_APP_BACKEND_DEV || "http://localhost:9000";  
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");  
