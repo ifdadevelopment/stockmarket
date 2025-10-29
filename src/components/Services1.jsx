@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const Services1 = () => {
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, []);
   return (
     <div className="py-2 bg-gray-100 font-publicSans py-20 px-0 sm:px-8 sm:py-10 sm:mt-[calc(var(--header-height,40px))] mt-[calc(var(--header-height,20px))]">
       <div className="max-w-6xl mx-auto px-4">

@@ -1,27 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAuth } from "../components/authContext"; // adjust path if needed
+import { useAuth } from "../components/authContext";
 
 const LoginPage = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+  
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { login } = useAuth(); 
-
+  const { login } = useAuth();
   const API_URL =
     import.meta.env.VITE_APP_ENV === "production"
       ? import.meta.env.VITE_APP_BACKEND_PROD
       : import.meta.env.VITE_APP_BACKEND_DEV;
-
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError("");
-
+    setError("");  
     try {
       const res = await fetch(`${API_URL}/api/user/login`, {
         method: "POST",
@@ -33,9 +33,9 @@ const LoginPage = () => {
 
       if (res.ok) {
         if (data.role === "admin") {
-          login(data); // Save user to context
+          login(data);  
           toast.success("Login successful! Redirecting...");
-          setTimeout(() => navigate("/admin-dashboard"), 1500);
+          setTimeout(() => navigate("/admin-dashboard"), 1500);  
         } else {
           setError("Only admins can log in here.");
           toast.error("Access denied. Admins only!");

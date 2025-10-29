@@ -1,8 +1,11 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { blogs as BLOGS } from "../../data";
 
 export default function BlogDetail() {
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, []);
   const { slug } = useParams();
   const nav = useNavigate();
 

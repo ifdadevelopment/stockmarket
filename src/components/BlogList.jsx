@@ -1,8 +1,11 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import BlogCard from "../components/BlogCard";
 import { blogs as BLOGS } from "../../data";
 
 export default function BlogList() {
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, []);
   const [q, setQ] = useState("");
   const [tag, setTag] = useState("all");
 

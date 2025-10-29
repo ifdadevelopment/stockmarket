@@ -1,12 +1,7 @@
-import React from "react";
-import {
-  FaFacebookF,
-  FaLinkedinIn,
-  FaInstagram,
-  FaXTwitter,
-  FaDiscord,
-} from "react-icons/fa6"; 
-import { image } from "../../data";
+import React, { useEffect } from "react";
+import { FaFacebookF, FaLinkedinIn, FaInstagram, FaXTwitter } from "react-icons/fa6"; 
+import { Link } from "react-router-dom";
+import { image } from "../../data"; 
 
 const linkGroups = [
   {
@@ -22,7 +17,7 @@ const linkGroups = [
     title: "Company",
     links: [
       { label: "About Us", href: "/about-us" },
-      // { label: "Partner With Us", href: "/partnership/" },
+      { label: "Login", href: "/login" },
       // { label: "Careers", href: "/careers/" },
       // { label: "FAQs", href: "/faq/" },
     ],
@@ -57,6 +52,9 @@ const socials = [
 ];
 
 export default function Footer() {
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, []);
   return (
     <footer
       className="text-white relative z-[3] w-full font-publicSans bg-[#0E61F6]"
@@ -68,20 +66,20 @@ export default function Footer() {
         <div className="px-8 lg:px-20 pt-[42px] lg:pt-20 pb-0 flex flex-col lg:flex-row">
           <div className="flex-0">
             <div className="flex items-center">
-              <a
-                href="/"
+              <Link
+                to="/"
                 className="relative block w-[170px] h-[50px] lg:w-[220px] lg:h-[165px]"
               >
                 <img
                   alt="Tradeohedge"
-                  src={image.stockgroWhite}
+                  src={image.stockgroWhite || "/default-logo.png"}  
                   className="absolute inset-0 h-full w-full object-contain"
                 />
-              </a>
+              </Link>
             </div>
 
             <div className="flex items-start mt-4 max-w-[320px]">
-              <img alt="location" src={image.location} className="h-5 w-5 mt-1" />
+              <img alt="location" src={image.location || "/default-location.png"} className="h-5 w-5 mt-1" />
               <div className="ml-4 text-[14px] opacity-80">
                 3rd Floor Rana Nagar Colony<br /> Chhitupur Sigra Varanasi,
                 <br />
@@ -91,7 +89,7 @@ export default function Footer() {
 
             <div className="flex flex-col mt-4 font-bold">
               <div className="flex items-center">
-                <img alt="mail" src={image.mail} className="h-3 w-3 mt-1" />
+                <img alt="mail" src={image.mail || "/default-mail-icon.png"} className="h-3 w-3 mt-1" />
                 <a
                   href="mailto:csnewtondhar@gmail.com"
                   className="ml-4 text-[14px] opacity-80"
@@ -101,8 +99,6 @@ export default function Footer() {
               </div>
             </div>
           </div>
-
-          {/* Links + Follow Us */}
           <div className="flex-1 lg:ml-16 grid grid-cols-2 md:grid-cols-4 gap-x-5 mt-12 lg:mt-0">
             {linkGroups.map((group) => (
               <div key={group.title} className="font-figtree">
@@ -112,19 +108,17 @@ export default function Footer() {
                 <ul>
                   {group.links.map((l) => (
                     <li key={l.href} className="mt-[18px]">
-                      <a
-                        href={l.href}
+                      <Link
+                        to={l.href} 
                         className="opacity-60 hover:opacity-100 text-[16px]"
                       >
                         {l.label}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
               </div>
             ))}
-
-            {/* ✅ Follow Us section with icons */}
             <div className="col-span-2 md:col-span-1 flex flex-col">
               <div className="mt-12 lg:mt-0 font-figtree">
                 <div className="font-bold text-[18px] lg:text-[20px] leading-6 pb-2">
@@ -159,13 +153,13 @@ export default function Footer() {
             <p className="opacity-40 mt-4 lg:mt-1">SEBI RA Reg : INH000010593</p>
           </div>
           <div className="flex lg:justify-end lg:mt-0 gap-3">
-            <a href="/terms-conditions" className="opacity-60 hover:opacity-100">
+            <Link to="/terms-conditions" className="opacity-60 hover:opacity-100">
               Terms &amp; Conditions
-            </a>
+            </Link>
             <div className="h-1 w-1 mt-2 bg-white rounded-full" />
-            <a href="/privacy-policy" className="opacity-60 hover:opacity-100">
+            <Link to="/privacy-policy" className="opacity-60 hover:opacity-100">
               Privacy Policy
-            </a>
+            </Link>
           </div>
         </div>
       </div>

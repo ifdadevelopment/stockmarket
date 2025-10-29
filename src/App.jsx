@@ -23,7 +23,9 @@ import TermsConditions from "./pages/TermsConditions";
 
 const App = () => {
   const { user } = useAuth();
-  const isMinimalLayout = location.pathname === "/home";
+
+  // Conditionally render the header and footer based on the current route
+  const isMinimalLayout = location.pathname === "/login" || location.pathname === "/home"; 
 
   return (
     <>
@@ -32,12 +34,13 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about-us" element={<Aboutus />} />
         <Route path="/login" element={<LoginPage />} />
+        
+        {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
-          <Route path="/admin-dashboard" element={<AdminDashboard />}>
-            <Route path="register" element={<RegisterPage />} />
-            <Route path="payment-list" element={<PaymentListPage />} />
-            <Route path="admincoupongenerator" element={<CouponGenerator />} />
-          </Route>
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/admin-dashboard/register" element={<RegisterPage />} />
+          <Route path="/admin-dashboard/payment-list" element={<PaymentListPage />} />
+          <Route path="/admin-dashboard/admincoupongenerator" element={<CouponGenerator />} />
         </Route>
 
         <Route path="/services" element={<Services />} />
