@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   EnvelopeIcon,
   ArrowsRightLeftIcon,
@@ -30,13 +30,21 @@ export default function WhatToExpect() {
       state: { selectedPrice: price, plan },
     });
   };
-
-  const plans = [
-    { label: "Rs.6000 / 3 Months", price: 6000, plan: "3 Months" },
-    { label: "Rs.9000 / 6 Months", price: 9000, plan: "6 Months" },
-    { label: "Rs.12000 / 12 Months", price: 12000, plan: "12 Months" },
-    { label: "Rs.499 / 1 Week Paid Trial", price: 499, plan: "1 Week Paid Trial" },
+  const [activeTab, setActiveTab] = useState("Popular");
+  const popularPlans = [
+    { label: "Rs.13999 / Monthly ", price: 13999, plan: "Monthly" },
+    { label: "Rs.29999 / 3 Months", price: 29999, plan: "3 Months" },
+    { label: "Rs.55000 / 6 Months", price: 55000, plan: "6 Months" },
+    { label: "Rs.80000 / 12 Months", price: 80000, plan: "12 Months" },
   ];
+  const diamondPlans = [
+    { label: "Rs.19999 / Monthly ", price: 19999, plan: "Monthly" },
+    { label: "Rs.51000 / 3 Months", price: 51000, plan: "3 Months" },
+    { label: "Rs.85000 / 6 Months", price: 85000, plan: "6 Months" },
+    { label: "Rs.121000 / 12 Months", price: 121000, plan: "12 Months" },
+  ];
+
+  const displayedPlans = activeTab === "Popular" ? popularPlans : diamondPlans;
 
   return (
     <section className="bg-white">
@@ -46,6 +54,7 @@ export default function WhatToExpect() {
         </h2>
 
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12">
+
           <Feature icon={EnvelopeIcon} title="Number of Alerts">
             We provide 3 – 4 Intraday calls per day.
           </Feature>
@@ -62,11 +71,27 @@ export default function WhatToExpect() {
             We make fair efforts but cannot guarantee outcomes. Guaranteeing results would
             violate SEBI guidelines and mislead the trader.
           </Feature>
-
           <div className="text-center">
-            <h3 className="text-gray-500 text-[24px] font-extrabold">Popular Plans</h3>
+            <h3 className="text-gray-500 text-[24px] font-extrabold">Plans</h3>
+            <div className="flex items-center justify-center mt-3 gap-3">
+              <button
+                onClick={() => setActiveTab("Popular")}
+                className={`px-4 py-2 rounded-md border text-sm font-semibold 
+                ${activeTab === "Popular" ? "bg-sky-600 text-white border-sky-600" : "border-sky-500 text-sky-600 hover:bg-sky-50"}`}
+              >
+                Popular Plans
+              </button>
+
+              <button
+                onClick={() => setActiveTab("Diamond")}
+                className={`px-4 py-2 rounded-md border text-sm font-semibold
+                ${activeTab === "Diamond" ? "bg-sky-600 text-white border-sky-600" : "border-sky-500 text-sky-600 hover:bg-sky-50"}`}
+              >
+                Diamond Plans
+              </button>
+            </div>
             <div className="mt-4 grid text-[18px] font-semibold gap-3 justify-items-center">
-              {plans.map((p, idx) => (
+              {displayedPlans.map((p, idx) => (
                 <button
                   key={idx}
                   type="button"
@@ -83,6 +108,7 @@ export default function WhatToExpect() {
             It’s all about probability, not certainty. Past performance does not indicate
             future results.
           </Feature>
+
         </div>
       </div>
     </section>
