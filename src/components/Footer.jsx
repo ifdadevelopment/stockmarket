@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { FaFacebookF, FaLinkedinIn, FaInstagram, FaXTwitter } from "react-icons/fa6"; 
+import { FaFacebookF, FaLinkedinIn, FaInstagram, FaXTwitter } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import { image } from "../../data"; 
+import { image } from "../../data";
 
 const linkGroups = [
   {
@@ -52,9 +52,9 @@ const socials = [
 ];
 
 export default function Footer() {
-    useEffect(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }, []);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   return (
     <footer
       className="text-white relative z-[3] w-full font-publicSans bg-[#0E61F6]"
@@ -72,7 +72,7 @@ export default function Footer() {
               >
                 <img
                   alt="Tradeohedge"
-                  src={image.stockgroWhite || "/default-logo.png"}  
+                  src={image.stockgroWhite || "/default-logo.png"}
                   className="absolute inset-0 h-full w-full object-contain"
                 />
               </Link>
@@ -81,9 +81,10 @@ export default function Footer() {
             <div className="flex items-start mt-4 max-w-[320px]">
               <img alt="location" src={image.location || "/default-location.png"} className="h-5 w-5 mt-1" />
               <div className="ml-4 text-[14px] opacity-80">
-                3rd Floor Rana Nagar Colony<br /> Chhitupur Sigra Varanasi,
+                1st Floor
+                Shahi Tower, old post office,<br /> B-38/9-M-7, Raghunath Nagar Colony,
                 <br />
-                Uttar Pradesh 221010.
+                Mahmoorganj Varanasi, 221010.
               </div>
             </div>
 
@@ -109,7 +110,7 @@ export default function Footer() {
                   {group.links.map((l) => (
                     <li key={l.href} className="mt-[18px]">
                       <Link
-                        to={l.href} 
+                        to={l.href}
                         className="opacity-60 hover:opacity-100 text-[16px]"
                       >
                         {l.label}
