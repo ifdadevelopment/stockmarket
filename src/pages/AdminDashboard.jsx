@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
-import { useAuth } from "../components/authContext"; // Import the useAuth hook
+import { useAuth } from "../components/authContext"; 
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
-  const { logout } = useAuth(); // Use the logout function from the context
-
-  // Function to handle logout
+  const { user,logout } = useAuth();
+  useEffect(() => {
+    if (user?.role === "admin") {
+      navigate("/admin-dashboard");
+    }
+  }, [user]);
   const handleLogout = () => {
-    localStorage.removeItem("authToken"); // Remove authToken from localStorage
-    logout(); // Clear user from the context
-    navigate("/login"); // Redirect to the login page
+    localStorage.removeItem("authToken"); 
+    logout(); 
+    navigate("/login"); 
   };
 
   return (
