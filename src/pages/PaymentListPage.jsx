@@ -5,10 +5,11 @@ const PaymentListPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const API_URL =
+ const API_URL =
     import.meta.env.VITE_APP_ENV === "production"
-      ? import.meta.env.VITE_APP_BACKEND_PROD
-      : import.meta.env.VITE_APP_BACKEND_DEV;
+      ? import.meta.env.VITE_APP_BACKEND || "https://stock.banarasdigitalsolution.com"
+      : import.meta.env.VITE_APP_BACKEND || "http://localhost:9000";  
+
 
   useEffect(() => {
     const fetchPayments = async () => {
