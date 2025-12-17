@@ -24,7 +24,8 @@ const linkGroups = [
   },
   {
     title: "Stay Connected",
-    links: [{ label: "Contact Us", href: "mailto:csnewtondhar@gmail.com" }],
+    // links: [{ label: "Contact Us", href: "mailto:csnewtondhar@gmail.com" }],
+    links: [{ label: "Contact Us", href: "/contact-us" }],
   },
 ];
 

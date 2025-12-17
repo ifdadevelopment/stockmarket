@@ -7,9 +7,10 @@ export default function CouponGenerator() {
   const [couponList, setCouponList] = useState([]);
   const [selectedCoupon, setSelectedCoupon] = useState(null); 
   const [usedByList, setUsedByList] = useState([]); 
-  const API_URL = import.meta.env.VITE_APP_ENV === "production"
-    ? import.meta.env.VITE_APP_BACKEND_PROD
-    : import.meta.env.VITE_APP_BACKEND_DEV;
+  const API_URL =
+    import.meta.env.VITE_APP_ENV === "production"
+      ? import.meta.env.VITE_APP_BACKEND || "https://stock.banarasdigitalsolution.com"
+      : import.meta.env.VITE_APP_BACKEND || "http://localhost:9000";  
 
   // ✅ Load coupons from server
   useEffect(() => {

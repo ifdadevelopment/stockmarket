@@ -21,6 +21,7 @@ import { useAuth } from "./components/authContext";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsConditions from "./pages/TermsConditions";
 import { useEffect } from "react";
+import ContactUs from "./pages/Contactus";
 
 const App = () => {
   const { user } = useAuth(); 
@@ -38,6 +39,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about-us" element={<Aboutus />} />
+        <Route path="/contact-us" element={<ContactUs />} />
                 <Route path="/login" element={user ? <Navigate to="/admin-dashboard" /> : <LoginPage />} />
        <Route element={<ProtectedRoute />}>
           <Route path="/admin-dashboard" element={<AdminDashboard />}>
