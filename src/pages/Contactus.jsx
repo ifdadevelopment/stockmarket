@@ -65,7 +65,7 @@ export default function ContactUs() {
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }, []);
-
+    const API_URL = import.meta.env.VITE_APP_ENV === "production" ? import.meta.env.VITE_APP_BACKEND || "https://stock.banarasdigitalsolution.com" : import.meta.env.VITE_APP_BACKEND || "http://localhost:9000";
     const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.target;
@@ -181,8 +181,8 @@ function PlanSection({ title, plans, selectedPlan, onSelect }) {
                         key={plan.id}
                         onClick={() => onSelect(plan)}
                         className={`border p-4 rounded-xl cursor-pointer transition ${selectedPlan?.id === plan.id
-                                ? "border-blue-600 bg-blue-50"
-                                : "hover:border-gray-400"
+                            ? "border-blue-600 bg-blue-50"
+                            : "hover:border-gray-400"
                             }`}
                     >
                         <p className="font-semibold">{plan.displayName}</p>

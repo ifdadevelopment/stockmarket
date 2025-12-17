@@ -22,6 +22,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsConditions from "./pages/TermsConditions";
 import { useEffect } from "react";
 import ContactUs from "./pages/Contactus";
+import FormListPage from "./pages/FormListPage";
 
 const App = () => {
   const { user } = useAuth(); 
@@ -45,6 +46,7 @@ const App = () => {
           <Route path="/admin-dashboard" element={<AdminDashboard />}>
             <Route path="register" element={<RegisterPage />} />
             <Route path="payment-list" element={<PaymentListPage />} />
+             <Route path="form-list" element={<FormListPage />} />
             <Route path="admincoupongenerator" element={<CouponGenerator />} />
           </Route>
         </Route>

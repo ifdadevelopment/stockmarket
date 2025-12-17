@@ -1,19 +1,19 @@
 import React, { useEffect } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
-import { useAuth } from "../components/authContext"; 
+import { useAuth } from "../components/authContext";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
-  const { user,logout } = useAuth();
+  const { user, logout } = useAuth();
   useEffect(() => {
     if (user?.role === "admin") {
       navigate("/admin-dashboard");
     }
   }, [user]);
   const handleLogout = () => {
-    localStorage.removeItem("authToken"); 
-    logout(); 
-    navigate("/login"); 
+    localStorage.removeItem("authToken");
+    logout();
+    navigate("/login");
   };
 
   return (
@@ -41,7 +41,13 @@ const AdminDashboard = () => {
             View Payments
           </button>
           <button
-            onClick={handleLogout} // Trigger the logout function on click
+            onClick={() => navigate("form-list")}
+            className="w-full text-left bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-4 rounded-lg shadow-md transition-all"
+          >
+            View Form Enquiries
+          </button>
+          <button
+            onClick={handleLogout}
             className="w-full text-left bg-red-600 hover:bg-red-700 text-white py-3 px-4 rounded-lg shadow-md transition-all mt-6"
           >
             Logout
