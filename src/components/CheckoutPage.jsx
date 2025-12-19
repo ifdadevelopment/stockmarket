@@ -8,11 +8,12 @@ export default function CheckoutPage() {
   const { selectedPrice = 9000, plan = "6 Months" } = location.state || {};
 
   const [form, setForm] = useState({ name: "", phone: "", email: "" });
-  const [coupon, setCoupon] = useState("");  
-  const [appliedCoupon, setAppliedCoupon] = useState(null); 
+  const [coupon, setCoupon] = useState("");
+  const [appliedCoupon, setAppliedCoupon] = useState(null);
   const [discount, setDiscount] = useState(0);
   const [gstPercent] = useState(18);
   const [usedCoupons, setUsedCoupons] = useState({});
+  const [agree, setAgree] = useState(false);
 
   const basePrice = selectedPrice;
   const gstAmount = ((basePrice - discount) * gstPercent) / 100;
@@ -20,8 +21,8 @@ export default function CheckoutPage() {
 
   const API_URL =
     import.meta.env.VITE_APP_ENV === "production"
-      ? import.meta.env.VITE_APP_BACKEND_PROD
-      : import.meta.env.VITE_APP_BACKEND_DEV;
+      ? import.meta.env.VITE_APP_BACKEND
+      : import.meta.env.VITE_APP_BACKEND;
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -74,6 +75,11 @@ export default function CheckoutPage() {
   };
 
   const placeOrder = async () => {
+
+    if (!agree) {
+      alert("⚠️ Please accept Terms, Investor Charter & MITC to proceed.");
+      return;
+    }
     if (!form.name || !form.phone || !form.email) {
       alert("⚠️ Please fill all billing details before payment.");
       return;
@@ -88,9 +94,10 @@ export default function CheckoutPage() {
       totalAmount: total,
       couponCode: appliedCoupon?.code || null,
       discount,
-      paymentId, // Use the generated UUID payment ID
+      paymentId,
       plan,
       gstAmount,
+      termsAccepted: agree,
     };
 
     try {
@@ -111,152 +118,185 @@ export default function CheckoutPage() {
           description: `${plan} Subscription`,
           image: "https://tradeohedge.com/logo.png",
           handler: async (response) => {
-            alert(`✅ Payment Successful!`);
-            navigate("/success", {
-              state: {
-                paymentId,
-                form,
-                plan,
-                total,
-                paymentDetails: response,
-              },
+            const res2 = await fetch(`${API_URL}/api/payment/success/start-kyc`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                paymentId,        
+                razorpay: response,
+                termsAccepted: agree,
+              }),
             });
+
+            const data2 = await res2.json();
+
+            if (res2.ok && data2.kycUrl) {
+              window.location.replace(data2.kycUrl); 
+            } else {
+              alert(data2?.message || "Failed to start KYC");
+            }
           },
           prefill: { name: form.name, email: form.email, contact: form.phone },
           theme: { color: "#0B69FF" },
-        };
-        const razor = new window.Razorpay(options);
-        razor.open();
-      } else {
-        alert("❌ Error saving payment details.");
-      }
-    } catch (error) {
+      };
+      const razor = new window.Razorpay(options);
+      razor.open();
+    } else {
       alert("❌ Error saving payment details.");
     }
-  };
+  } catch (error) {
+    alert("❌ Error saving payment details.");
+  }
+};
 
-  const formatCurrency = (value) => `₹ ${value.toLocaleString("en-IN")}`;
+const formatCurrency = (value) => `₹ ${value.toLocaleString("en-IN")}`;
 
-  return (
-    <div className="w-full bg-gray-50 min-h-screen font-publicSans pt-[100px]">
-      <section className="bg-gradient-to-r from-blue-50 to-gray-100 py-10 shadow-sm">
-        <div className="max-w-5xl mx-auto px-6 text-center">
-          <h3 className="text-3xl font-bold text-gray-800">Checkout</h3>
-          <p className="text-gray-600 mt-2">
-            Securely complete your <span className="font-semibold">{plan}</span> subscription
-          </p>
+return (
+  <div className="w-full bg-gray-50 min-h-screen font-publicSans pt-[100px]">
+    <section className="bg-gradient-to-r from-blue-50 to-gray-100 py-10 shadow-sm">
+      <div className="max-w-5xl mx-auto px-6 text-center">
+        <h3 className="text-3xl font-bold text-gray-800">Checkout</h3>
+        <p className="text-gray-600 mt-2">
+          Securely complete your <span className="font-semibold">{plan}</span> subscription
+        </p>
+      </div>
+    </section>
+
+    <section className="py-10">
+      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-6">
+        {/* Billing Details */}
+        <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-lg transition-shadow">
+          <h5 className="text-xl font-semibold mb-6 text-gray-800">Billing Details</h5>
+          <form className="space-y-6">
+            {["name", "phone", "email"].map((field) => (
+              <div key={field}>
+                <label className="block text-gray-700 font-medium capitalize mb-1">
+                  {field} <span className="text-red-500">*</span>
+                </label>
+                <input
+                  name={field}
+                  value={form[field]}
+                  onChange={handleChange}
+                  type={field === "email" ? "email" : "text"}
+                  placeholder={`Enter your ${field}`}
+                  className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-400 transition-all"
+                />
+              </div>
+            ))}
+          </form>
         </div>
-      </section>
 
-      <section className="py-10">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-6">
-          {/* Billing Details */}
-          <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-lg transition-shadow">
-            <h5 className="text-xl font-semibold mb-6 text-gray-800">Billing Details</h5>
-            <form className="space-y-6">
-              {["name", "phone", "email"].map((field) => (
-                <div key={field}>
-                  <label className="block text-gray-700 font-medium capitalize mb-1">
-                    {field} <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    name={field}
-                    value={form[field]}
-                    onChange={handleChange}
-                    type={field === "email" ? "email" : "text"}
-                    placeholder={`Enter your ${field}`}
-                    className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-400 transition-all"
-                  />
-                </div>
-              ))}
-            </form>
+        {/* Order Summary */}
+        <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-lg transition-shadow">
+          <h5 className="text-xl font-semibold mb-6 text-gray-800">Order Summary</h5>
+
+          <div className="space-y-4">
+            <div className="flex justify-between text-gray-700">
+              <span>Service Type</span>
+              <span className="font-semibold">Intraday</span>
+            </div>
+            <div className="flex justify-between text-gray-700">
+              <span>Plan</span>
+              <span className="font-semibold">{plan}</span>
+            </div>
+
+            <div className="border-t border-gray-200 my-3"></div>
+
+            <div className="flex justify-between text-gray-700">
+              <span>Base Price</span>
+              <span className="font-semibold">{formatCurrency(basePrice)}</span>
+            </div>
+
+            <div
+              className={`flex justify-between ${discount > 0 ? "text-green-600 font-semibold" : "text-gray-400"
+                }`}
+            >
+              <span>Discount {appliedCoupon?.code ? `(${appliedCoupon.code})` : ""}</span>
+              <span>
+                {discount > 0 ? `- ${formatCurrency(discount)}` : formatCurrency(0)}
+              </span>
+            </div>
+
+            <div className="flex justify-between text-gray-700">
+              <span>GST (18%)</span>
+              <span className="font-semibold">{formatCurrency(gstAmount)}</span>
+            </div>
+
+            <div className="border-t border-gray-300 mt-4 pt-3"></div>
+            <div className="flex justify-between text-lg font-bold text-blue-700">
+              <span>Total Payable</span>
+              <span>{formatCurrency(total)}</span>
+            </div>
           </div>
 
-          {/* Order Summary */}
-          <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-lg transition-shadow">
-            <h5 className="text-xl font-semibold mb-6 text-gray-800">Order Summary</h5>
-
-            <div className="space-y-4">
-              <div className="flex justify-between text-gray-700">
-                <span>Service Type</span>
-                <span className="font-semibold">Intraday</span>
-              </div>
-              <div className="flex justify-between text-gray-700">
-                <span>Plan</span>
-                <span className="font-semibold">{plan}</span>
-              </div>
-
-              <div className="border-t border-gray-200 my-3"></div>
-
-              <div className="flex justify-between text-gray-700">
-                <span>Base Price</span>
-                <span className="font-semibold">{formatCurrency(basePrice)}</span>
-              </div>
-
-              <div
-                className={`flex justify-between ${
-                  discount > 0 ? "text-green-600 font-semibold" : "text-gray-400"
-                }`}
-              >
-                <span>Discount {appliedCoupon?.code ? `(${appliedCoupon.code})` : ""}</span>
-                <span>
-                  {discount > 0 ? `- ${formatCurrency(discount)}` : formatCurrency(0)}
-                </span>
-              </div>
-
-              <div className="flex justify-between text-gray-700">
-                <span>GST (18%)</span>
-                <span className="font-semibold">{formatCurrency(gstAmount)}</span>
-              </div>
-
-              <div className="border-t border-gray-300 mt-4 pt-3"></div>
-              <div className="flex justify-between text-lg font-bold text-blue-700">
-                <span>Total Payable</span>
-                <span>{formatCurrency(total)}</span>
-              </div>
-            </div>
-
-            {/* Coupon Section */}
-            <div className="mt-6">
-              <label className="block text-gray-700 font-medium mb-2">Apply Coupon</label>
-              <div className="flex flex-col md:flex-row md:items-center md:gap-4">
-                <input
-                  type="text"
-                  value={coupon}
-                  onChange={(e) => setCoupon(e.target.value)}
-                  placeholder="Enter coupon code (e.g., TH20)"
-                  className="flex-grow md:w-3/4 px-4 py-2 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-blue-400 outline-none"
-                />
-                <button
-                  onClick={applyCoupon}
-                  type="button"
-                  className="mt-4 md:mt-0 md:px-6 py-2 bg-blue-600 text-white font-semibold rounded-r-lg hover:bg-blue-700 transition"
-                >
-                  Apply
-                </button>
-              </div>
-              {appliedCoupon && (
-                <p
-                  className={`mt-2 text-sm ${
-                    appliedCoupon.code ? "text-green-600" : "text-red-500"
-                  }`}
-                >
-                  {appliedCoupon.message}
-                </p>
-              )}
-            </div>
-
-            <div className="mt-8">
+          {/* Coupon Section */}
+          <div className="mt-6">
+            <label className="block text-gray-700 font-medium mb-2">Apply Coupon</label>
+            <div className="flex flex-col md:flex-row md:items-center md:gap-4">
+              <input
+                type="text"
+                value={coupon}
+                onChange={(e) => setCoupon(e.target.value)}
+                placeholder="Enter coupon code (e.g., TH20)"
+                className="flex-grow md:w-3/4 px-4 py-2 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-blue-400 outline-none"
+              />
               <button
-                onClick={placeOrder}
-                className="w-full bg-blue-600 text-white py-3 text-center text-lg font-semibold rounded-xl hover:bg-blue-700 active:scale-[0.99] transition-all"
+                onClick={applyCoupon}
+                type="button"
+                className="mt-4 md:mt-0 md:px-6 py-2 bg-blue-600 text-white font-semibold rounded-r-lg hover:bg-blue-700 transition"
               >
-                Pay {formatCurrency(total)}
+                Apply
               </button>
             </div>
+            {appliedCoupon && (
+              <p
+                className={`mt-2 text-sm ${appliedCoupon.code ? "text-green-600" : "text-red-500"
+                  }`}
+              >
+                {appliedCoupon.message}
+              </p>
+            )}
+          </div>
+          <div className="mt-6 flex items-start gap-3">
+            <input
+              type="checkbox"
+              id="agree"
+              checked={agree}
+              onChange={(e) => setAgree(e.target.checked)}
+              className="mt-1 h-4 w-4 accent-blue-600 cursor-pointer"
+            />
+            <label htmlFor="agree" className="text-sm text-gray-700 leading-relaxed">
+              By proceeding, you agree to the{" "}
+              <a href="/terms" target="_blank" className="text-blue-600 ">
+                Terms & Conditions
+              </a>
+              ,{" "}
+              <a href="/investor-charter" target="_blank" className="text-blue-600 ">
+                Investor Charter
+              </a>{" "}
+              and{" "}
+              <a href="/mitc" target="_blank" className="text-blue-600 ">
+                MITC
+              </a>.
+            </label>
+          </div>
+
+          <div className="mt-8">
+            <button
+              onClick={placeOrder}
+              disabled={!agree}
+              className={`w-full py-3 text-lg font-semibold rounded-xl transition-all
+    ${agree
+                  ? "bg-blue-600 text-white hover:bg-blue-700 active:scale-[0.99]"
+                  : "bg-gray-300 text-gray-500 cursor-not-allowed"}
+  `}
+            >
+              Pay {formatCurrency(total)}
+            </button>
           </div>
         </div>
-      </section>
-    </div>
-  );
+      </div>
+    </section>
+  </div>
+);
 }

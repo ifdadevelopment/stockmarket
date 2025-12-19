@@ -76,7 +76,7 @@ const PaymentListPage = () => {
                   <td className="px-4 py-2">{payment.email}</td>
                   <td className="px-4 py-2">{payment.plan}</td>
                   <td className="px-4 py-2">{payment.totalAmount}</td>
-                  <td className="px-4 py-2">{payment.status}</td>
+                  <td className="px-4 py-2">{payment.paymentStatus}</td>
                   <td className="px-4 py-2">{new Date(payment.createdAt).toLocaleDateString()}</td>
                 </tr>
               ))}
