@@ -118,185 +118,201 @@ export default function CheckoutPage() {
           description: `${plan} Subscription`,
           image: "https://tradeohedge.com/logo.png",
           handler: async (response) => {
-            const res2 = await fetch(`${API_URL}/api/payment/success/start-kyc`, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                paymentId,        
-                razorpay: response,
-                termsAccepted: agree,
-              }),
-            });
+            try {
+              const res2 = await fetch(`${API_URL}/api/payment/success/start-kyc`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  paymentId,
+                  razorpay: response,
+                  termsAccepted: agree,
+                }),
+              });
 
-            const data2 = await res2.json();
+              const contentType = res2.headers.get("content-type") || "";
+              const payload = contentType.includes("application/json")
+                ? await res2.json()
+                : { message: await res2.text() };
 
-            if (res2.ok && data2.kycUrl) {
-              window.location.replace(data2.kycUrl); 
-            } else {
-              alert(data2?.message || "Failed to start KYC");
+              if (!res2.ok) {
+                alert(payload?.message || "Failed to start KYC");
+                return;
+              }
+
+              if (!payload?.kycUrl) {
+                alert("KYC URL missing from server response.");
+                return;
+              }
+
+              // same window redirect
+              window.location.assign(payload.kycUrl);
+            } catch (e) {
+              console.error("start-kyc handler failed:", e);
+              alert("Network error while starting KYC.");
             }
           },
+
           prefill: { name: form.name, email: form.email, contact: form.phone },
           theme: { color: "#0B69FF" },
-      };
-      const razor = new window.Razorpay(options);
-      razor.open();
-    } else {
+        };
+        const razor = new window.Razorpay(options);
+        razor.open();
+      } else {
+        alert("❌ Error saving payment details.");
+      }
+    } catch (error) {
       alert("❌ Error saving payment details.");
     }
-  } catch (error) {
-    alert("❌ Error saving payment details.");
-  }
-};
+  };
 
-const formatCurrency = (value) => `₹ ${value.toLocaleString("en-IN")}`;
+  const formatCurrency = (value) => `₹ ${value.toLocaleString("en-IN")}`;
 
-return (
-  <div className="w-full bg-gray-50 min-h-screen font-publicSans pt-[100px]">
-    <section className="bg-gradient-to-r from-blue-50 to-gray-100 py-10 shadow-sm">
-      <div className="max-w-5xl mx-auto px-6 text-center">
-        <h3 className="text-3xl font-bold text-gray-800">Checkout</h3>
-        <p className="text-gray-600 mt-2">
-          Securely complete your <span className="font-semibold">{plan}</span> subscription
-        </p>
-      </div>
-    </section>
-
-    <section className="py-10">
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-6">
-        {/* Billing Details */}
-        <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-lg transition-shadow">
-          <h5 className="text-xl font-semibold mb-6 text-gray-800">Billing Details</h5>
-          <form className="space-y-6">
-            {["name", "phone", "email"].map((field) => (
-              <div key={field}>
-                <label className="block text-gray-700 font-medium capitalize mb-1">
-                  {field} <span className="text-red-500">*</span>
-                </label>
-                <input
-                  name={field}
-                  value={form[field]}
-                  onChange={handleChange}
-                  type={field === "email" ? "email" : "text"}
-                  placeholder={`Enter your ${field}`}
-                  className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-400 transition-all"
-                />
-              </div>
-            ))}
-          </form>
+  return (
+    <div className="w-full bg-gray-50 min-h-screen font-publicSans pt-[100px]">
+      <section className="bg-gradient-to-r from-blue-50 to-gray-100 py-10 shadow-sm">
+        <div className="max-w-5xl mx-auto px-6 text-center">
+          <h3 className="text-3xl font-bold text-gray-800">Checkout</h3>
+          <p className="text-gray-600 mt-2">
+            Securely complete your <span className="font-semibold">{plan}</span> subscription
+          </p>
         </div>
+      </section>
 
-        {/* Order Summary */}
-        <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-lg transition-shadow">
-          <h5 className="text-xl font-semibold mb-6 text-gray-800">Order Summary</h5>
-
-          <div className="space-y-4">
-            <div className="flex justify-between text-gray-700">
-              <span>Service Type</span>
-              <span className="font-semibold">Intraday</span>
-            </div>
-            <div className="flex justify-between text-gray-700">
-              <span>Plan</span>
-              <span className="font-semibold">{plan}</span>
-            </div>
-
-            <div className="border-t border-gray-200 my-3"></div>
-
-            <div className="flex justify-between text-gray-700">
-              <span>Base Price</span>
-              <span className="font-semibold">{formatCurrency(basePrice)}</span>
-            </div>
-
-            <div
-              className={`flex justify-between ${discount > 0 ? "text-green-600 font-semibold" : "text-gray-400"
-                }`}
-            >
-              <span>Discount {appliedCoupon?.code ? `(${appliedCoupon.code})` : ""}</span>
-              <span>
-                {discount > 0 ? `- ${formatCurrency(discount)}` : formatCurrency(0)}
-              </span>
-            </div>
-
-            <div className="flex justify-between text-gray-700">
-              <span>GST (18%)</span>
-              <span className="font-semibold">{formatCurrency(gstAmount)}</span>
-            </div>
-
-            <div className="border-t border-gray-300 mt-4 pt-3"></div>
-            <div className="flex justify-between text-lg font-bold text-blue-700">
-              <span>Total Payable</span>
-              <span>{formatCurrency(total)}</span>
-            </div>
+      <section className="py-10">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-6">
+          {/* Billing Details */}
+          <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-lg transition-shadow">
+            <h5 className="text-xl font-semibold mb-6 text-gray-800">Billing Details</h5>
+            <form className="space-y-6">
+              {["name", "phone", "email"].map((field) => (
+                <div key={field}>
+                  <label className="block text-gray-700 font-medium capitalize mb-1">
+                    {field} <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    name={field}
+                    value={form[field]}
+                    onChange={handleChange}
+                    type={field === "email" ? "email" : "text"}
+                    placeholder={`Enter your ${field}`}
+                    className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-400 transition-all"
+                  />
+                </div>
+              ))}
+            </form>
           </div>
 
-          {/* Coupon Section */}
-          <div className="mt-6">
-            <label className="block text-gray-700 font-medium mb-2">Apply Coupon</label>
-            <div className="flex flex-col md:flex-row md:items-center md:gap-4">
-              <input
-                type="text"
-                value={coupon}
-                onChange={(e) => setCoupon(e.target.value)}
-                placeholder="Enter coupon code (e.g., TH20)"
-                className="flex-grow md:w-3/4 px-4 py-2 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-blue-400 outline-none"
-              />
-              <button
-                onClick={applyCoupon}
-                type="button"
-                className="mt-4 md:mt-0 md:px-6 py-2 bg-blue-600 text-white font-semibold rounded-r-lg hover:bg-blue-700 transition"
-              >
-                Apply
-              </button>
-            </div>
-            {appliedCoupon && (
-              <p
-                className={`mt-2 text-sm ${appliedCoupon.code ? "text-green-600" : "text-red-500"
+          {/* Order Summary */}
+          <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-lg transition-shadow">
+            <h5 className="text-xl font-semibold mb-6 text-gray-800">Order Summary</h5>
+
+            <div className="space-y-4">
+              <div className="flex justify-between text-gray-700">
+                <span>Service Type</span>
+                <span className="font-semibold">Intraday</span>
+              </div>
+              <div className="flex justify-between text-gray-700">
+                <span>Plan</span>
+                <span className="font-semibold">{plan}</span>
+              </div>
+
+              <div className="border-t border-gray-200 my-3"></div>
+
+              <div className="flex justify-between text-gray-700">
+                <span>Base Price</span>
+                <span className="font-semibold">{formatCurrency(basePrice)}</span>
+              </div>
+
+              <div
+                className={`flex justify-between ${discount > 0 ? "text-green-600 font-semibold" : "text-gray-400"
                   }`}
               >
-                {appliedCoupon.message}
-              </p>
-            )}
-          </div>
-          <div className="mt-6 flex items-start gap-3">
-            <input
-              type="checkbox"
-              id="agree"
-              checked={agree}
-              onChange={(e) => setAgree(e.target.checked)}
-              className="mt-1 h-4 w-4 accent-blue-600 cursor-pointer"
-            />
-            <label htmlFor="agree" className="text-sm text-gray-700 leading-relaxed">
-              By proceeding, you agree to the{" "}
-              <a href="/terms" target="_blank" className="text-blue-600 ">
-                Terms & Conditions
-              </a>
-              ,{" "}
-              <a href="/investor-charter" target="_blank" className="text-blue-600 ">
-                Investor Charter
-              </a>{" "}
-              and{" "}
-              <a href="/mitc" target="_blank" className="text-blue-600 ">
-                MITC
-              </a>.
-            </label>
-          </div>
+                <span>Discount {appliedCoupon?.code ? `(${appliedCoupon.code})` : ""}</span>
+                <span>
+                  {discount > 0 ? `- ${formatCurrency(discount)}` : formatCurrency(0)}
+                </span>
+              </div>
 
-          <div className="mt-8">
-            <button
-              onClick={placeOrder}
-              disabled={!agree}
-              className={`w-full py-3 text-lg font-semibold rounded-xl transition-all
+              <div className="flex justify-between text-gray-700">
+                <span>GST (18%)</span>
+                <span className="font-semibold">{formatCurrency(gstAmount)}</span>
+              </div>
+
+              <div className="border-t border-gray-300 mt-4 pt-3"></div>
+              <div className="flex justify-between text-lg font-bold text-blue-700">
+                <span>Total Payable</span>
+                <span>{formatCurrency(total)}</span>
+              </div>
+            </div>
+
+            {/* Coupon Section */}
+            <div className="mt-6">
+              <label className="block text-gray-700 font-medium mb-2">Apply Coupon</label>
+              <div className="flex flex-col md:flex-row md:items-center md:gap-4">
+                <input
+                  type="text"
+                  value={coupon}
+                  onChange={(e) => setCoupon(e.target.value)}
+                  placeholder="Enter coupon code (e.g., TH20)"
+                  className="flex-grow md:w-3/4 px-4 py-2 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-blue-400 outline-none"
+                />
+                <button
+                  onClick={applyCoupon}
+                  type="button"
+                  className="mt-4 md:mt-0 md:px-6 py-2 bg-blue-600 text-white font-semibold rounded-r-lg hover:bg-blue-700 transition"
+                >
+                  Apply
+                </button>
+              </div>
+              {appliedCoupon && (
+                <p
+                  className={`mt-2 text-sm ${appliedCoupon.code ? "text-green-600" : "text-red-500"
+                    }`}
+                >
+                  {appliedCoupon.message}
+                </p>
+              )}
+            </div>
+            <div className="mt-6 flex items-start gap-3">
+              <input
+                type="checkbox"
+                id="agree"
+                checked={agree}
+                onChange={(e) => setAgree(e.target.checked)}
+                className="mt-1 h-4 w-4 accent-blue-600 cursor-pointer"
+              />
+              <label htmlFor="agree" className="text-sm text-gray-700 leading-relaxed">
+                By proceeding, you agree to the{" "}
+                <a href="/terms" target="_blank" className="text-blue-600 ">
+                  Terms & Conditions
+                </a>
+                ,{" "}
+                <a href="/investor-charter" target="_blank" className="text-blue-600 ">
+                  Investor Charter
+                </a>{" "}
+                and{" "}
+                <a href="/mitc" target="_blank" className="text-blue-600 ">
+                  MITC
+                </a>.
+              </label>
+            </div>
+
+            <div className="mt-8">
+              <button
+                onClick={placeOrder}
+                disabled={!agree}
+                className={`w-full py-3 text-lg font-semibold rounded-xl transition-all
     ${agree
-                  ? "bg-blue-600 text-white hover:bg-blue-700 active:scale-[0.99]"
-                  : "bg-gray-300 text-gray-500 cursor-not-allowed"}
+                    ? "bg-blue-600 text-white hover:bg-blue-700 active:scale-[0.99]"
+                    : "bg-gray-300 text-gray-500 cursor-not-allowed"}
   `}
-            >
-              Pay {formatCurrency(total)}
-            </button>
+              >
+                Pay {formatCurrency(total)}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  </div>
-);
+      </section>
+    </div>
+  );
 }
