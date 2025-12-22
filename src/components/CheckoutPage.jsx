@@ -109,7 +109,7 @@ export default function CheckoutPage() {
 
       const data = await res.json();
       if (res.ok) {
-        // Initiate Razorpay payment
+        let kycStarted = false;
         const options = {
           key: import.meta.env.VITE_RAZORPAY_KEY_ID,
           amount: Math.round(total * 100),
@@ -118,15 +118,13 @@ export default function CheckoutPage() {
           description: `${plan} Subscription`,
           image: "https://tradeohedge.com/logo.png",
           handler: async (response) => {
+            if (kycStarted) return;  
+            kycStarted = true;          
             try {
               const res2 = await fetch(`${API_URL}/api/payment/success/start-kyc`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  paymentId,
-                  razorpay: response,
-                  termsAccepted: agree,
-                }),
+                body: JSON.stringify({ paymentId, razorpay: response, termsAccepted: agree }),
               });
 
               const contentType = res2.headers.get("content-type") || "";
