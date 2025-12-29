@@ -17,12 +17,12 @@ export default function AlertBanner({
         <h3 className="text-[#e02b20] font-extrabold tracking-tight text-3xl sm:text-2xl md:text-4xl">
           {title}
         </h3>
-        <p className="mt-2 text-[16px] font-semibold sm:text-[16px] leading-6 text-amber-400">
-          We are a SEBI-registered research firm and{" "}
-          <span className="font-bold text-amber-400">
+        <p className="mt-2 text-[22px] font-bold sm:text-[20px] leading-6 text-amber-400">
+          <span className="font-extrabold text-white">Tradeohedge</span> is a  <span className="font-extrabold text-white">SEBI Registered Research Analyst</span> providing only research and advisory services.
+          {/* <span className="font-bold text-amber-400">
             do not offer account handling or PMS
-          </span>
-          . Beware of scams by unregulated entities falsely using our name. To
+          </span> */}
+          Beware of scams by unregulated entities falsely using our name. To
           report any, contact{" "}
           <a
             href={`tel:${phone}`}
@@ -30,7 +30,6 @@ export default function AlertBanner({
           >
             {phone}
           </a>
-          .
         </p>
       </div>
       <div className="h-[2px] w-full bg-neutral-800" aria-hidden="true" />
